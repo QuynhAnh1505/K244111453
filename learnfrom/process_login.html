@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Kết quả đăng nhập</title>
+        <style>
+            body{font-family:Arial,Helvetica,sans-serif;background:#f3f4f6;margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}
+            .result{background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.08);width:360px}
+            .field{margin-bottom:12px}
+            .label{font-weight:600;color:#333;margin-bottom:6px;display:block}
+            .value{padding:8px;border:1px solid #e5e7eb;border-radius:4px;background:#fbfdff;word-break:break-all}
+            .controls{display:flex;gap:8px;margin-top:10px}
+            button{padding:6px 10px;border-radius:6px;border:1px solid #cbd5e1;background:#fff;cursor:pointer}
+        </style>
+    </head>
+    <body>
+        <div class="result">
+            <h2 style="margin-top:0;margin-bottom:8px">Kết quả gửi</h2>
+            <div id="output">
+                <p>Đang chờ dữ liệu từ form...</p>
+            </div>
+        </div>
+
+        <script>
+            function escapeHtml(s){
+                return String(s).replace(/[&<>"']/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]});
+            }
+
+            document.addEventListener('DOMContentLoaded', function(){
+                const params = new URLSearchParams(window.location.search);
+                const username = params.get('username');
+                const password = params.get('password');
+                const out = document.getElementById('output');
+
+                if(!username && !password){
+                    out.innerHTML = '<p>Không tìm thấy dữ liệu. Hãy gửi form với method="get" hoặc kiểm tra tên trường.</p>';
+                    return;
+                }
+
+                const safeUser = escapeHtml(username || '');
+                const safePass = escapeHtml(password || '');
+
+                out.innerHTML = `
+                    <div class="field">
+                        <span class="label">User Name</span>
+                        <div class="value">${safeUser}</div>
+                    </div>
+                    <div class="field">
+                        <span class="label">Password</span>
+                        <div class="value" id="pwd">${safePass.replace(/./g,'•')}</div>
+                    </div>
+                    <div class="controls">
+                        <button id="toggle">Hiện mật khẩu</button>
+                        <button id="back" onclick="history.back();return false;">Quay lại</button>
+                    </div>
+                `;
+
+                const toggle = document.getElementById('toggle');
+                const pwdEl = document.getElementById('pwd');
+                let revealed = false;
+                toggle.addEventListener('click', function(){
+                    revealed = !revealed;
+                    if(revealed){
+                        pwdEl.textContent = safePass;
+                        toggle.textContent = 'Ẩn mật khẩu';
+                    } else {
+                        pwdEl.textContent = safePass.replace(/./g,'•');
+                        toggle.textContent = 'Hiện mật khẩu';
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
