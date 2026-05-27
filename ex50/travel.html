@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <title>Exercise 50</title>
+    </head>
+    <body style="background-color: rgba(143, 236, 255, 0.644);">
+        <div align="center">
+            <img src="images/DeLong.jpg">
+        </div>
+        <h2>Travel Expense Report</h2>
+        <hr style="border-color: rgb(83, 42, 0); color: rgb(83, 42, 0);">
+        <table>
+            <tr>
+                <td>1)</td>
+                <td>First Name:</td>
+                <td><input type="text" name="First Name:" id="First Name"></td>
+                <td>Last Name:</td>
+                <td><input type="text" name="Last Name:" id="Last Name"></td>
+            </tr>
+            <tr>
+                <td>2)</td>
+                <td>Social Security Number:</td>
+                <td><input type="text" name="SSN" id="SSN"></td>
+            </tr>
+            <tr>
+                <td>3)</td>
+                <td>Department</td>
+                <form name="departmentForm">
+                    <td><select name="departments" id="departments" onchange="departmentForm.selectedDepartment.value=this.value; departmentForm.departmentName.value=this.options[this.selectedIndex].text">
+                        <option value="accounting">Accounting</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="sales">Sales</option>
+                        <option value="hr">Human Resources</option>
+                        <option value="it">Information Technology</option>
+                    </select></td>
+                </form>
+            </tr>
+            <tr>
+                <td>4)</td>
+                <td>Describe the purpose of your trip:</td>
+            </tr>
+            <tr>
+                <td colspan="5"><input type="text" name="tripPurpose" id="tripPurpose" style="height: 100px; width: 100%;"></td>
+            </tr>
+            <tr>
+                <td>5)</td>
+                <td>Itemize your travel expenses:</td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <table border="1" cellpadding="5" cellspacing="3">
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name="expenseDate1" id="expenseDate1"></td>
+                            <td><input type="text" name="expenseDescription1" id="expenseDescription1"></td>
+                            <td>
+                                <form name="categoryForm">
+                                    <select name="categories" id="categories" onchange="categoryForm.selectedCategory.value=this.value; categoryForm.categoryName.value=this.options[this.selectedIndex].text">
+                                        <option value="transportation">Transportation</option>
+                                        <option value="lodging">Lodging</option>
+                                        <option value="meals">Meals</option>
+                                        <option value="entertainment">Entertainment</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </form>    
+                            </td>
+                            <td><input type="text" name="expenseAmount1" id="expenseAmount1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name="expenseDate1" id="expenseDate1"></td>
+                            <td><input type="text" name="expenseDescription1" id="expenseDescription1"></td>
+                            <td>
+                                <form name="categoryForm">
+                                    <select name="categories" id="categories" onchange="categoryForm.selectedCategory.value=this.value; categoryForm.categoryName.value=this.options[this.selectedIndex].text">
+                                        <option value="transportation">Transportation</option>
+                                        <option value="lodging">Lodging</option>
+                                        <option value="meals">Meals</option>
+                                        <option value="entertainment">Entertainment</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </form>    
+                            </td>
+                            <td><input type="text" name="expenseAmount1" id="expenseAmount1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name="expenseDate1" id="expenseDate1"></td>
+                            <td><input type="text" name="expenseDescription1" id="expenseDescription1"></td>
+                            <td>
+                                <form name="categoryForm">
+                                    <select name="categories" id="categories" onchange="categoryForm.selectedCategory.value=this.value; categoryForm.categoryName.value=this.options[this.selectedIndex].text">
+                                        <option value="transportation">Transportation</option>
+                                        <option value="lodging">Lodging</option>
+                                        <option value="meals">Meals</option>
+                                        <option value="entertainment">Entertainment</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </form>    
+                            </td>
+                            <td><input type="text" name="expenseAmount1" id="expenseAmount1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name="expenseDate1" id="expenseDate1"></td>
+                            <td><input type="text" name="expenseDescription1" id="expenseDescription1"></td>
+                            <td>
+                                <form name="categoryForm">
+                                    <select name="categories" id="categories" onchange="categoryForm.selectedCategory.value=this.value; categoryForm.categoryName.value=this.options[this.selectedIndex].text">
+                                        <option value="transportation">Transportation</option>
+                                        <option value="lodging">Lodging</option>
+                                        <option value="meals">Meals</option>
+                                        <option value="entertainment">Entertainment</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </form>    
+                            </td>
+                            <td><input type="text" name="expenseAmount1" id="expenseAmount1"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>6)</td>
+                <td>Have you submitted your receipt?</td>
+                <td>
+                    <form name="receiptForm">
+                        <input type="radio" name="receipt" value="yes" id="receiptYes" onchange="receiptForm.selectedReceipt.value=this.value; receiptForm.receiptName.value=this.options[this.selectedIndex].text"> Yes
+                        <input type="radio" name="receipt" value="no" id="receiptNo" onchange="receiptForm.selectedReceipt.value=this.value; receiptForm.receiptName.value=this.options[this.selectedIndex].text"> No
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="submit" value="Submit travel expenses" style="width: 200px; height: 30px; font-size: 30px"></td>
+                <td><input type="reset" value="Reset form" style="font-size: 30px"></td>
+            </tr>
+            <tr>
+                <td colspan="4">Question? Contact Debbie Larson in Accounting (ext.2150)</td>
+            </tr>
+        </table>
+    </body>
+</html>
