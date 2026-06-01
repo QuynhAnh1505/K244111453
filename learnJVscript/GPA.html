@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tính điểm GPA theo Môn học</title>
+        <script>
+            function handleCourseChange() {
+                var selectedCourse = document.getElementById("id_select_course").value;
+                
+                // Mặc định ẩn ô nhập điểm Advanced đi trước
+                document.getElementById("id_tr_advanced").style.display = "none";
+                // Reset lại ô nhập điểm Advanced về trống
+                document.getElementById("id_advanced").value = "";
+
+                if (selectedCourse === "course1") {
+                    document.getElementById("id_lbl_process").innerText = "Điểm quá trình (20%):";
+                    document.getElementById("id_lbl_midterm").innerText = "Điểm giữa kỳ (30%):";
+                    document.getElementById("id_lbl_final").innerText = "Điểm cuối kỳ (40%):";
+                } else if (selectedCourse === "course2") {
+                    document.getElementById("id_lbl_process").innerText = "Điểm quá trình (15%):";
+                    document.getElementById("id_lbl_midterm").innerText = "Điểm giữa kỳ (20%):";
+                    document.getElementById("id_lbl_final").innerText = "Điểm cuối kỳ (50%):";
+                    
+                    // Môn 2 có điểm Advanced (15%) nên ta cho hàng này hiện lên
+                    document.getElementById("id_tr_advanced").style.display = "table-row";
+                } else if (selectedCourse === "course3") {
+                    document.getElementById("id_lbl_process").innerText = "Điểm quá trình (25%):";
+                    document.getElementById("id_lbl_midterm").innerText = "Điểm giữa kỳ (25%):";
+                    document.getElementById("id_lbl_final").innerText = "Điểm cuối kỳ (50%):";
+                }
+                
+                // Ẩn bảng kết quả cũ đi khi đổi môn học mới
+                document.getElementById("id_div_result").style.display = "none";
+            }
+
+            function calculateCourseGPA() {
+                var course = document.getElementById("id_select_course").value;
+                
+                // Lấy điểm từ các ô nhập liệu
+                var processScore = parseFloat(document.getElementById("id_process").value);
+                var midtermScore = parseFloat(document.getElementById("id_midterm").value);
+                var finalScore = parseFloat(document.getElementById("id_final").value);
+                var advancedScore = parseFloat(document.getElementById("id_advanced").value);
+
+                // Khai báo biến chứa kết quả cuối cùng
+                var gpa = 0;
+
+                // 1. Kiểm tra xem đã chọn môn học chưa
+                if (course === "") {
+                    alert("Vui lòng chọn một môn học trước khi tính điểm!");
+                    return;
+                }
+
+                // 2. Kiểm tra tính hợp lệ của các ô điểm cơ bản
+                if (isNaN(processScore) || isNaN(midtermScore) || isNaN(finalScore)) {
+                    alert("Vui lòng nhập đầy đủ điểm Quá trình, Giữa kỳ và Cuối kỳ!");
+                    return;
+                }
+                if (processScore < 0 || processScore > 10 || midtermScore < 0 || midtermScore > 10 || finalScore < 0 || finalScore > 10) {
+                    alert("Điểm số phải nằm trong khoảng từ 0 đến 10!");
+                    return;
+                }
+
+                // 3. Tính toán dựa theo tỷ trọng riêng của từng môn
+                if (course === "course1") {
+                    // Tỷ lệ: 20%, 30%, 40% (Tổng hệ số là 90%, cần chia cho 0.9 hoặc quy đổi chuẩn của môn)
+                    // Ở đây tính theo công thức trọng số chuẩn: Điểm = (QTrinh*0.2 + GiuaKy*0.3 + CuoiKy*0.4) / 0.9
+                    gpa = (processScore * 0.2 + midtermScore * 0.3 + finalScore * 0.4) / 0.9;
+                } 
+                else if (course === "course2") {
+                    // Tỷ lệ: 15%, 20%, 50%, 15% (Tổng bằng 100%)
+                    if (isNaN(advancedScore)) {
+                        alert("Môn học 2 yêu cầu nhập thêm điểm nâng cao (Advanced Score)!");
+                        return;
+                    }
+                    if (advancedScore < 0 || advancedScore > 10) {
+                        alert("Điểm Advanced phải nằm trong khoảng từ 0 đến 10!");
+                        return;
+                    }
+                    gpa = (processScore * 0.15) + (midtermScore * 0.20) + (finalScore * 0.50) + (advancedScore * 0.15);
+                } 
+                else if (course === "course3") {
+                    // Tỷ lệ: 25%, 25%, 50% (Tổng bằng 100%)
+                    gpa = (processScore * 0.25) + (midtermScore * 0.25) + (finalScore * 0.50);
+                }
+
+                // 4. Biện luận xếp loại học lực
+                var rank = "";
+                if (gpa >= 8.5) rank = "Xuất sắc / Giỏi (Điểm A/A+)";
+                else if (gpa >= 7.0) rank = "Khá (Điểm B/B+)";
+                else if (gpa >= 5.5) rank = "Trung bình (Điểm C/C+)";
+                else rank = "Yếu / Kém (Điểm D/F)";
+
+                // 5. Hiển thị kết quả ra màn hình
+                document.getElementById("id_txt_gpa").innerText = gpa.toFixed(2);
+                document.getElementById("id_txt_rank").innerText = rank;
+                document.getElementById("id_div_result").style.display = "block";
+            }
+
+            function resetAll() {
+                document.getElementById("id_div_result").style.display = "none";
+                document.getElementById("id_tr_advanced").style.display = "none";
+                document.getElementById("id_lbl_process").innerText = "Điểm quá trình:";
+                document.getElementById("id_lbl_midterm").innerText = "Điểm giữa kỳ:";
+                document.getElementById("id_lbl_final").innerText = "Điểm cuối kỳ:";
+            }
+        </script>
+    </head>
+    <body style="background-color: rgb(3, 129, 141); font-family: Arial, sans-serif; color: white;">
+
+        <form name="courseGpaForm" style="margin: 40px auto; width: 500px;">
+            <h2 align="center">HỆ THỐNG TÍNH GPA THEO MÔN HỌC</h2>
+            
+            <table cellpadding="8" cellspacing="3" style="color: white; width: 100%;">
+                <tr>
+                    <td><label for="id_select_course">Chọn môn học (Course):</label></td>
+                    <td>
+                        <select id="id_select_course" name="selectCourse" onchange="handleCourseChange()" style="width: 100%; padding: 4px;">
+                            <option value="">-- Chọn môn học --</option>
+                            <option value="course1">Course 1 (20% - 30% - 40%)</option>
+                            <option value="course2">Course 2 (15% - 20% - 50% - 15%)</option>
+                            <option value="course3">Course 3 (25% - 25% - 50%)</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><span id="id_lbl_process">Điểm quá trình:</span></td>
+                    <td><input type="text" id="id_process" name="processScore" style="width: 95%;"></td>
+                </tr>
+                <tr>
+                    <td><span id="id_lbl_midterm">Điểm giữa kỳ:</span></td>
+                    <td><input type="text" id="id_midterm" name="midtermScore" style="width: 95%;"></td>
+                </tr>
+                <tr>
+                    <td><span id="id_lbl_final">Điểm cuối kỳ:</span></td>
+                    <td><input type="text" id="id_final" name="finalScore" style="width: 95%;"></td>
+                </tr>
+
+                <tr id="id_tr_advanced" style="display: none;">
+                    <td><span id="id_lbl_advanced" style="color: yellow; font-weight: bold;">Điểm Advanced (15%):</span></td>
+                    <td><input type="text" id="id_advanced" name="advancedScore" style="width: 95%; border: 1px solid yellow;"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center" style="padding-top: 15px;">
+                        <input type="button" value="Tính GPA" onclick="calculateCourseGPA()" style="font-size: 16px; padding: 6px 20px; cursor: pointer;">
+                        <input type="reset" value="Xóa làm lại" onclick="resetAll()" style="font-size: 16px; padding: 6px 20px; cursor: pointer; margin-left: 15px;">
+                    </td>
+                </tr>
+            </table>
+
+            <div id="id_div_result" style="display: none; background-color: rgba(255, 255, 255, 0.2); margin-top: 25px; padding: 15px; border-radius: 5px; border: 1px solid white;">
+                <h3 align="center" style="margin-top: 0; color: #fff;">BẢNG ĐIỂM TỔNG KẾT</h3>
+                <p>Điểm trung bình môn: <b><span id="id_txt_gpa" style="font-size: 18px; color: yellow;">0.00</span></b></p>
+                <p>Xếp loại học lực: <b><span id="id_txt_rank">Chưa xác định</span></b></p>
+            </div>
+
+        </form>
+
+    </body>
+</html>
