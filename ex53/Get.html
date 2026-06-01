@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Get information</title>
+</head>
+<body>
+    <div style="width:500px;margin:40px auto;padding:20px;border:1px solid #ccc;box-shadow:0 4px 10px rgba(0,0,0,0.15);text-align:center;">
+        <h2>Contact Information</h2>
+        <p id="fullName"></p>
+        <p id="email"></p>
+        <p id="department"></p>
+        <p id="title"></p>
+        <p id="content"></p>
+
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const fullName = params.get('Full_Name') || '';
+        const email = params.get('Email') || '';
+        const department = params.get('Department') || '';
+        const title = params.get('Title') || '';
+        const content = params.get('Content') || '';
+
+        document.getElementById('fullName').textContent = `Full Name: ${fullName}`;
+        document.getElementById('email').textContent = `Email: ${email}`;
+        document.getElementById('department').textContent = `Department: ${department}`;
+        document.getElementById('title').textContent = `Title: ${title}`;
+        document.getElementById('content').textContent = `Content: ${content}`;
+       
+    </script>
+</body>
+</html>
