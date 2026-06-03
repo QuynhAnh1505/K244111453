@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>Exercise 55</title>
+        <script type="text/javascript">
+            function solveEquation() {
+                var a = eval(myForm.id_a.value);
+                var b = eval(myForm.id_b.value);
+                var c = eval(myForm.id_c.value);
+                var finalResult = "";
+                if (a == 0) {
+                    if (b == 0) {
+                        if (c == 0) {
+                            finalResult = "Infinitely many solutions";
+                        } else {
+                            finalResult = "No solution";
+                        }
+                    } else {
+                        var x = -c / b;
+                        finalResult = "x = " + x;
+                    }
+                } 
+                else {
+                    var delta = (b * b) - (4 * a * c);
+
+                    if (delta < 0) {
+                        finalResult = "No solution";
+                    } 
+                    else if (delta == 0) {
+                        var x0 = -b / (2 * a);
+                        finalResult = "x1 = x2 = " + x0;
+                    } 
+                    else {
+                        var x1 = (-b - Math.sqrt(delta)) / (2 * a);
+                        var x2 = (-b + Math.sqrt(delta)) / (2 * a);
+                        
+                        finalResult = "x1=" + x1 + " ; x2=" + x2;
+                    }
+                }
+                document.getElementById("id_result").value = finalResult;
+            }
+            function clearForm() {
+                document.getElementById("id_a").value = "";
+                document.getElementById("id_b").value = "";
+                document.getElementById("id_c").value = "";
+                document.getElementById("id_result").value = "";
+            }
+        </script>
+    </head>
+    <body>
+        <form name="myForm">
+            <table border="1">
+                <tr>
+                    <td colspan="2" style="background-color:rgb(194, 255, 212); text-align:center">The quadratic equation</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">a:</td>
+                    <td><input type="text" id="id_a" name="id_a"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">b:</td>
+                    <td><input type="text" id="id_b" name="id_b"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">c:</td>
+                    <td><input type="text" id="id_c" name="id_c"></td>
+                </tr>
+                <tr>
+                    <td>Result:</td>
+                    <td><input type="text" id="id_result" name="id_result" readonly style="color: red"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="button" value="Find solution" onclick="solveEquation()">
+                        <input type="button" value="Clear" onclick="clearForm()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

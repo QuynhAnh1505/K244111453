@@ -1,0 +1,66 @@
+<!--ex54 co san ham max min roi sin cos dua ve radian truoc roi moi truyen vao-->
+<!--ex55 tai su dung ptb1 nhung bo sung them ptb2-->
+<!--ex57 lay dung 3 dong-->
+<html>
+    <head>
+        <title>Exercise 54</title>
+        <script type="text/javascript">
+            function tinhMAX() {
+                var a = eval(document.getElementById("id_a").value);
+                var b = eval(document.getElementById("id_b").value);
+                var c = eval(document.getElementById("id_c").value);
+                document.getElementById("id_result").value = Math.max(a, b, c);
+            }
+            function tinhMIN() {
+                var a = eval(document.getElementById("id_a").value);
+                var b = eval(document.getElementById("id_b").value);
+                var c = eval(document.getElementById("id_c").value);
+                document.getElementById("id_result").value = Math.min(a, b, c);
+            }
+            function tinhSin() {
+                var do_a = eval(document.getElementById("id_a").value);
+                var radian_a = do_a * (Math.PI / 180);
+                document.getElementById("id_result").value = Math.sin(radian_a);
+            }
+            function tinhCos() {
+                var do_a = eval(document.getElementById("id_a").value);
+                var radian_a = do_a * (Math.PI / 180);
+                document.getElementById("id_result").value = Math.cos(radian_a);
+            }
+            function tinhMu() {
+                var a = eval(document.getElementById("id_a").value);
+                var b = eval(document.getElementById("id_b").value);
+                document.getElementById("id_result").value = Math.pow(a, b);
+            }
+        </script>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <td>a:</td>
+                <td><input type="text" id="id_a" name="id_a"></td>
+            </tr>
+            <tr>
+                <td>b:</td>
+                <td><input type="text" id="id_b" name="id_b"></td>
+            </tr>
+            <tr>
+                <td>c:</td>
+                <td><input type="text" id="id_c" name="id_c"></td>
+            </tr>
+            <tr>
+                <td>Result:</td>
+                <td><input type="text" id="id_result" name="id_result"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="MAX" onclick="tinhMAX()">
+                    <input type="button" value="MIN" onclick="tinhMIN()">
+                    <input type="button" value="sin(a)" onclick="tinhSin()">
+                    <input type="button" value="Cos(a)" onclick="tinhCos()">
+                    <input type="button" value="a^b" onclick="tinhMu()">
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

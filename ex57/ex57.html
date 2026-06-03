@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Item Table Calculator</title>
+        <script type="text/javascript">
+            
+            // Hàm duy nhất: Bấm nút Sum thì mới tính toàn bộ bảng
+            function tinhTongTotal() {
+                // 1. Lấy số lượng từ các ô nhập Qty
+                var qty1 = eval(myForm.id_qty1.value);
+                var qty2 = eval(myForm.id_qty2.value);
+                var qty3 = eval(myForm.id_qty3.value);
+
+                // Nếu ô nào để trống hoặc nhập bậy thì coi như số lượng bằng 0
+                if (!qty1) qty1 = 0;
+                if (!qty2) qty2 = 0;
+                if (!qty3) qty3 = 0;
+
+                // 2. Tính tiền riêng cho từng dòng
+                var thanhTien1 = 19.95 * qty1;
+                var thanhTien2 = 29.95 * qty2;
+                var thanhTien3 = 39.95 * qty3;
+
+                // 3. Đổ kết quả tiền của từng dòng lên màn hình
+                document.getElementById("id_item1").value = thanhTien1;
+                document.getElementById("id_item2").value = thanhTien2;
+                document.getElementById("id_item3").value = thanhTien3;
+
+                // 4. Cộng tổng tất cả lại và đổ vào ô Total
+                var tongCong = thanhTien1 + thanhTien2 + thanhTien3;
+                document.getElementById("id_total").value = tongCong;
+            }
+
+        </script>
+    </head>
+    <body>
+
+        <form name="myForm">
+            <table border="1">
+                <tr>
+                    <td>Part Number</td>
+                    <td>Description</td>
+                    <td>Price</td>
+                    <td>Qty</td>
+                    <td>Item table</td>
+                </tr>
+                
+                <tr>
+                    <td>C112</td>
+                    <td>Mouse</td>
+                    <td>19.95$</td>
+                    <td><input type="text" id="id_qty1" name="id_qty1"></td>
+                    <td><input type="text" id="id_item1" name="id_item1" readonly></td>
+                </tr>
+
+                <tr>
+                    <td>B124</td>
+                    <td>Keyboard US</td>
+                    <td>29.95$</td>
+                    <td><input type="text" id="id_qty2" name="id_qty2"></td>
+                    <td><input type="text" id="id_item2" name="id_item2" readonly></td>
+                </tr>
+
+                <tr>
+                    <td>U125</td>
+                    <td>USB KingMax</td>
+                    <td>39.95$</td>
+                    <td><input type="text" id="id_qty3" name="id_qty3"></td>
+                    <td><input type="text" id="id_item3" name="id_item3" readonly></td>
+                </tr>
+
+                <tr>
+                    <td colspan="3"></td>
+                    <td>Total:</td>
+                    <td><input type="text" id="id_total" name="id_total" readonly></td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td>
+                        <input type="button" value="Sum" style="background-color: rgb(255, 218, 53);" onclick="tinhTongTotal()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title> Tiêu đề trang</title>
+        <script>
+            function displayCustomerInfo() 
+            { 
+                //alert("Name ="+myForm.name.value)
+                //alert("Name ="+document.getElementById("name").value)
+                var name = document.getElementById("name").value;
+                var customerType = document.getElementById("customerType").value;
+                //nếu là biến toàn cục thì k khai báo var
+                divInfor=document.getElementById("customerInfo");
+                switch(customerType)
+                {
+                    case "vip":
+                        divInfor.innerHTML = "Khach hang VIP: "+name;
+                        divInfor.style.backgroundColor = "yellow";
+                        break;
+                    case "normal":
+                        divInfor.innerHTML = "Khach hang normal: "+name;
+                        divInfor.style.backgroundColor = "green";
+                        break;
+                    case "potential":
+                        divInfor.innerHTML = "Khach hang potential: "+name;
+                        divInfor.style.backgroundColor = "blue";
+                        break;
+                }
+            }               
+        </script>
+    </head>
+    <body>
+        <form name="myForm">
+            <label for="name">First name:</label>
+            <input type="text" id="name" name="name"><br><br>
+            Customer type:
+            <select name="customerType" id="customerType">
+                <option value="vip">VIP</option>
+                <option value="normal">normal</option>
+                <option value="potential">potential</option>
+            </select><br><br>
+            <input type="button" value="OK" onclick="displayCustomerInfo()">
+        </form>
+        <div id="customerInfo">
+
+        </div>
+    </body>
+</html>
