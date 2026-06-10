@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <title> Tiêu đề trang</title>
+        <script>
+            function saveCustomerInfo()
+            {
+                var name = document.getElementById("customer_name").value;
+                var address = document.getElementById("customer_address").value;
+                var phone = document.getElementById("customer_phone").value;
+                var email = document.getElementById("customer_email").value;
+                var day = document.getElementById("birthday_day").value;
+                var month = document.getElementById("birthday_month").value;
+                var year = document.getElementById("birthday_year").value;
+
+                var customer_information = "Customer Name: " + name + "<br>" +
+                    "Customer Address: " + address + "<br>" +
+                    "Customer Phone: " + phone + "<br>" +
+                    "Customer Email: " + email + "<br>" +
+                    "Customer Birthday: " + day + "/" + month + "/" + year;
+
+                document.getElementById("customer_information").innerHTML = customer_information;
+            }
+        </script>
+        <script>
+            var customer_type=["Regular","VIP","Potential","Lựu Đạn"];
+        </script>
+    </head>
+    <body>
+        <form name="customer_form">
+            <table>
+                <tr>
+                    <td>Customer Name:</td>
+                    <td><input type="text" name="customer_name" id="customer_name"></td>
+                </tr>
+                <tr>
+                    <td>Customer Address:</td>
+                    <td><input type="text" name="customer_address" id="customer_address"></td>
+                </tr>
+                <tr>
+                    <td>Customer Phone:</td>
+                    <td><input type="text" name="customer_phone" id="customer_phone"></td>
+                </tr>
+                <tr>
+                    <td>Customer Email:</td>
+                    <td><input type="text" name="customer_email" id="customer_email"></td>
+                </tr>
+                <tr>
+                    <td>Customer Birthday:</td>
+                    <td>
+                        <select name="birthday_day" id="birthday_day"></select>
+                        <select name="birthday_month" id="birthday_month"></select>
+                        <select name="birthday_year" id="birthday_year"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Customer Type:</td>
+                    <td>
+                        <select name="customer_type" id="customer_type">
+                            <script>
+                                for(var i = 0; i < customer_type.length; i++)
+                                {
+                                    document.write("<option value='" + customer_type[i] + "'>" + customer_type[i] + "</option>");
+                                }
+                            </script>
+                        </select>
+                    </td>
+                </tr>
+                            
+            </table>
+            <button type="button" onclick="saveCustomerInfo()">Save</button>
+            <div id="customer_information" style="font-weight:bold;font-size:20px;"></div>
+        </form>
+        <script>
+            function load_date_for_birthday_selection()
+            {
+                var birthday_day=document.getElementById("birthday_day");
+                var birthday_month=document.getElementById("birthday_month");
+                var birthday_year=document.getElementById("birthday_year");
+                    for (var i=1;i<=31;i++)
+                {
+                    birthday_day.innerHTML+="<option value='"+i+"'>"+i+"</option>";
+                }
+                for (var i=1;i<=12;i++)
+                {
+                    birthday_month.innerHTML+="<option value='"+i+"'>"+i+"</option>";  
+                }
+                for (var i=1965;i<=2015;i++)
+                {
+                    birthday_year.innerHTML+="<option value='"+i+"'>"+i+"</option>";
+                }
+            }
+            load_date_for_birthday_selection();
+            function show_customer_type()
+            {
+                var customer_type=document.getElementById("customer_type").value;
+                for(var i=0;i<customer_type.length;i++)
+                {
+                    customer_type.innerHTML+="<option value='"+customer_type[i]+"'>"+customer_type[i]+"</option>";      
+            }
+        }
+            show_customer_type();
+        </script>
+    </body>
+</html>

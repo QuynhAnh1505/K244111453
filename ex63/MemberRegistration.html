@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <title>Member Registration</title>
+        <link rel="stylesheet" href="css/maincss.css">
+        <script>
+            function processSaveMember() {
+                var name = document.getElementById("id_name").value;
+                var email = document.getElementById("id_email").value;
+                    if(name == "" || email == "") {
+                    alert("Please enter Name and Email!");
+                    return;
+                }
+
+                var day = document.getElementById("id_day").value;
+                var month = document.getElementById("id_month").value;
+                var year = document.getElementById("id_year").value;
+                var birthday = (day < 10 ? "0" + day : day) + "/" + (month < 10 ? "0" + month : month) + "/" + year;
+                
+                var gender = "Man";
+                if (document.getElementById("rad_woman").checked) {
+                    gender = "Woman";
+                }
+                
+                var checkboxes = document.getElementsByName("hobbies");
+                var arrHobbies = [];
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) arrHobbies.push(checkboxes[i].value);
+                }
+                var hobbiesText = arrHobbies.join(", ");
+                
+                var color = "";
+                var colorsRadio = document.getElementsByName("favColor");
+                for (var j = 0; j < colorsRadio.length; j++) {
+                    if (colorsRadio[j].checked) {
+                        color = colorsRadio[j].value;
+                        break;
+                    }
+                }
+
+                var memberbody = document.getElementById("memberbody");
+                var tr = document.createElement("tr");
+                
+                var td_name = document.createElement("td");
+                var td_email = document.createElement("td");
+                var td_gender = document.createElement("td");
+                var td_birthday = document.createElement("td");
+                var td_hobbies = document.createElement("td");
+                var td_color = document.createElement("td");
+                
+                td_name.innerHTML = name;
+                td_email.innerHTML = email;
+                td_gender.innerHTML = gender;
+                td_birthday.innerHTML = birthday;
+                td_hobbies.innerHTML = hobbiesText;
+                td_color.innerHTML = color;
+                
+                tr.appendChild(td_name);
+                tr.appendChild(td_email);
+                tr.appendChild(td_gender);
+                tr.appendChild(td_birthday);
+                tr.appendChild(td_hobbies);
+                tr.appendChild(td_color);
+                
+                memberbody.appendChild(tr);
+            }
+        </script>
+        
+        <script src="js/dataset.js"></script>
+        <script src="js/mainjs.js"></script>
+    </head>
+    <body>
+        <h1>Member Registration</h1>
+        <hr>
+        
+        <form name="myform" id="memberForm">
+            <table>
+                <tr>
+                    <td>Name(*):</td>
+                    <td><input type="text" id="id_name" style="width: 250px;"></td>
+                </tr>
+                <tr>
+                    <td>Birthday(*):</td>
+                    <td>
+                        Day: <select id="id_day"></select>
+                        Month: <select id="id_month"></select>
+                        Year: <select id="id_year"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender(*):</td>
+                    <td>
+                        <input type="radio" id="rad_man" name="gender" checked> Man
+                        <input type="radio" id="rad_woman" name="gender"> Woman
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email(*):</td>
+                    <td><input type="text" id="id_email" style="width: 250px;"></td>
+                </tr>
+                <tr>
+                    <td>Your favorite:</td>
+                    <td>
+                        <input type="checkbox" name="hobbies" value="Shopping" checked> Shopping <br>
+                        <input type="checkbox" name="hobbies" value="Tourism"> Tourism <br>
+                        <input type="checkbox" name="hobbies" value="Chat"> Chat <br>
+                        <input type="checkbox" name="hobbies" value="Read a book"> Read a book <br>
+                        <input type="checkbox" name="hobbies" value="Listening to music"> Listening to music
+                    </td>
+                </tr>
+                <tr>
+                    <td>Your favorite color:</td>
+                    <td>
+                        <input type="radio" name="favColor" value="Blue" checked> <span class="bg-blue">Blue</span> <br><br>
+                        <input type="radio" name="favColor" value="Red"> <span class="bg-red">Red</span> <br><br>
+                        <input type="radio" name="favColor" value="Yellow"> <span class="bg-yellow">Yellow</span> <br><br>
+                        <input type="radio" name="favColor" value="Green"> <span class="bg-green">Green</span> <br><br>
+                        <input type="radio" name="favColor" value="Violet"> <span class="bg-violet">Violet</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="button" onclick="processSaveMember()">Sign up</button>
+                        <input type="reset" value="Reset">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <br>
+        <table border="1">
+            <thead>
+                <tr class="table-header">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Birthday</th>
+                    <th>Hobbies</th>
+                    <th>Colors</th>
+                </tr>
+            </thead>
+            <tbody id="memberbody">
+                </tbody>
+        </table> 
+
+        <script>
+            // ĐOẠN CODE TỰ ĐỘNG SINH ĐỦ NGÀY THÁNG NĂM TRÊN GIAO DIỆN
+            var selectDay = document.getElementById("id_day");
+            for (var d = 1; d <= 31; d++) {
+                selectDay.options[selectDay.options.length] = new Option(d < 10 ? "0" + d : d, d);
+            }
+
+            var selectMonth = document.getElementById("id_month");
+            for (var m = 1; m <= 12; m++) {
+                selectMonth.options[selectMonth.options.length] = new Option(m, m);
+            }
+
+            var selectYear = document.getElementById("id_year");
+            for (var y = 1970; y <= 2010; y++) {
+                selectYear.options[selectYear.options.length] = new Option(y, y);
+            }
+
+            // Gọi hàm từ file mainjs.js đổ mảng dữ liệu mẫu lên bảng
+            var memberbody = document.getElementById("memberbody");
+            load_members(members, memberbody);
+        </script>
+    </body>
+</html>

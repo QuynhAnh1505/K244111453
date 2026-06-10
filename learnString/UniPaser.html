@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title> Tiêu đề trang</title>
+        <script>
+        function getInfo(event)
+        {
+            event.preventDefault();
+
+            var uri = document.getElementById("uri").value;
+
+            var protocol = uri.substring(0, uri.indexOf("://"));
+
+            var remain = uri.substring(uri.indexOf("://") + 3);
+
+            var host = remain.split("/")[0];
+
+            var port = "";
+
+            if(host.indexOf(":") != -1)
+            {
+                port = host.split(":")[1];
+                host = host.split(":")[0];
+            }
+
+            var queryString = "";
+
+            if(uri.indexOf("?") != -1)
+            {
+                queryString = uri.substring(uri.indexOf("?") + 1);
+            }
+
+            var params = queryString.split("&");
+
+            var id = "";
+            var name = "";
+
+            for(var i = 0; i < params.length; i++)
+            {
+                var pair = params[i].split("=");
+
+                if(pair[0] == "id")
+                {
+                    id = pair[1];
+                }
+
+                if(pair[0] == "name")
+                {
+                    name = decodeURIComponent(pair[1]);
+                }
+            }
+
+            document.getElementById("protocol").innerText = protocol;
+            document.getElementById("host").innerText = host;
+            document.getElementById("port").innerText = port;
+            document.getElementById("query-id").innerText = id;
+            document.getElementById("name").innerText = name;
+        }
+    </script>
+    </head>
+    <body>
+        <form name="myform">
+            <p>URI:</p>
+            <input type="text" name="uri" id="uri" maxlength="200" size="100"
+                value="https://www.example.com:8080/search?id=id123&name=John">
+            <button>Get Infor</button>
+            <p>Protocol:<span id="protocol"></span></p>
+            <p>Host:<span id="host"></span></p>
+            <p>Port:<span id="port"></span></p>
+            <p>Id:<span id="query-id"></span></p>
+            <p>Name:<span id="query-name"></span></p>
+        </form>
+    </body>
+</html>

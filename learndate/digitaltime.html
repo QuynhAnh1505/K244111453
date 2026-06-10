@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title> Tiêu đề trang</title>
+    </head>
+    <body>
+        <div style="font-size: 24px; font-weight:bold;" 
+        id="my_digital_timer">
+       </div>
+       <script>
+        function make_my_digital_timer()
+        {
+            var my_digital_timer=document.getElementById("my_digital_timer");
+            var mydate=new Date();
+            var hours=mydate.getHours();
+            var minutes=mydate.getMinutes();
+            var seconds=mydate.getSeconds();
+            if(hours < 10)
+                {
+                    hours = "0" + hours;
+                }
+                if(minutes < 10)
+                {
+                    minutes = "0" + minutes;
+                }
+                if(seconds < 10)
+                {
+                    seconds = "0" + seconds;
+                }
+                my_digital_timer.innerText = hours + ":" + minutes + ":" + seconds;
+        }
+            setInterval(make_my_digital_timer, 1000);
+        </script>
+        <script>
+        (function() {
+            var colors = ['#FFD700', '#FFC0CB', '#FFA500', '#FF69B4', '#FF4500', '#FF6347', '#FF1493'];
+            var idx = 0;
+            function cycleBg() {
+                document.body.style.backgroundColor = colors[idx];
+                idx = (idx + 1) % colors.length;
+            }
+            cycleBg();
+            setInterval(cycleBg, 1000);
+        })();
+        </script>
+    </body>
+</html>

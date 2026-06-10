@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>Design Web Node</title>
+    </head>
+    <body style="font-family: Arial, sans-serif; margin: 20px;">
+
+        <form name="nodeForm">
+            <table border="1" cellpadding="5" cellspacing="0">
+                
+                <tr>
+                    <td>
+                        <button type="button" onclick="addNode()" id="btn_add" name="btn_add">Add Node</button>
+                    </td>
+                    <td>Content:</td>
+                    <td>
+                        <input type="text" id="id_content" name="id_content">
+                    </td>
+                    <td>Position:</td>
+                    <td>
+                        <input type="text" id="id_pos_add" name="id_pos_add">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <button type="button" onclick="removeNode()" id="btn_remove" name="btn_remove">Remove Node</button>
+                    </td>
+                    <td></td> <td></td> <td>Position:</td>
+                    <td>
+                        <input type="text" id="id_pos_remove" name="id_pos_remove">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <button type="button" onclick="modifyNode()" id="btn_modify" name="btn_modify">Modify Node</button>
+                    </td>
+                    <td>New Content:</td>
+                    <td>
+                        <input type="text" id="id_new_content" name="id_new_content">
+                    </td>
+                    <td>Position:</td>
+                    <td>
+                        <input type="text" id="id_pos_modify" name="id_pos_modify">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="5" style="font-weight: bold; padding-top: 15px;">
+                        Web Node
+                        <ul id="myList" name="myList" style="font-weight: normal; margin-top: 5px;">
+                            <li>Data base</li>
+                            <li>Web1</li>
+                            <li>Web2</li>
+                        </ul>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
+        <script src="js/mainjs.js"></script>
+    </body>
+</html>
