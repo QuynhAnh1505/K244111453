@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<products>
+  <product>
+    <name>iPhone 15 Pro Max</name>
+    <image>https://salt.tikicdn.com/cache/100x100/ts/product/ce/1f/57/5cc4e52db89b7e6d2e0ce85f84fc83e1.jpg</image>
+    <price>35000000</price>
+  </product>
+  <product>
+    <name>Samsung Galaxy S24</name>
+    <image>https://salt.tikicdn.com/cache/100x100/ts/product/b9/d1/8b/7b8e8f8e9f9e9d9c9b9a9e9d9c9b9a9e.jpg</image>
+    <price>25000000</price>
+  </product>
+  <product>
+    <name>iPad Air 2024</name>
+    <image>https://salt.tikicdn.com/cache/100x100/ts/product/12/34/56/78901234567890123456789012345678.jpg</image>
+    <price>18000000</price>
+  </product>
+  <product>
+    <name>MacBook Pro 14</name>
+    <image>https://salt.tikicdn.com/cache/100x100/ts/product/ab/cd/ef/abcdefabcdefabcdefabcdefabcdefab.jpg</image>
+    <price>45000000</price>
+  </product>
+  <product>
+    <name>Sony WH-1000XM5</name>
+    <image>https://salt.tikicdn.com/cache/100x100/ts/product/99/88/77/aabbccddeeffaabbccddeeffaabbccdd.jpg</image>
+    <price>8500000</price>
+  </product>
+</products>

@@ -1,0 +1,29 @@
+table {
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+th {
+    cursor: pointer;
+    color: #111111;
+    user-select: none; 
+}
+
+th:hover {
+    background-color: #b5b5b5;
+}
+
+tbody tr {
+    background-color: white;
+    cursor: pointer;
+}
+
+.row-hover {
+    background-color: yellow !important; 
+}
+

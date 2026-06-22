@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Exercise 67: XML - DOM Parser</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    <script src="JS/student.js"></script>
+    <script>
+        var xmlString = `
+        <students>
+            <student>
+                <id>987456</id>
+                <name>Marie Curie</name>
+                <birthday>7/11/1867</birthday>
+                <gender>Woman</gender>
+            </student>
+            <student>
+                <id>987561</id>
+                <name>Einstein</name>
+                <birthday>14/3/1879</birthday>
+                <gender>Man</gender>
+            </student>
+            <student>
+                <id>985467</id>
+                <name>Leó Szilárd</name>
+                <birthday>11/2/1898</birthday>
+                <gender>Man</gender>
+            </student>
+        </students>`;
+        
+        var studentList = [];
+        var isAscending = true;
+    </script>
+</head>
+<body>
+    <h2 style="text-align: center; color: darkblue;">STUDENT LIST (XML DOM PARSER)</h2>
+    <table border="1" align="center" width="70%">
+        <thead>
+            <tr style="background-color: #cccccc;">
+                <th onclick="processSort('id')">Student ID</th>
+                <th onclick="processSort('name')">Full Name</th>
+                <th onclick="processSort('birthday')">Date of Birth</th>
+                <th onclick="processSort('gender')">Gender</th>
+            </tr>
+        </thead>
+        <tbody id="studentbody">
+            </tbody>
+    </table>
+
+    <br>
+    <div id="detail-panel" align="center" style="display: none; width: 40%; margin: 0 auto; padding: 15px; background-color: #f2f2f2; color: black; border: 1px solid #a9a9a9; border-radius: 5px; font-family: Arial, sans-serif;">
+        <h3 style="margin-top: 0; color: darkblue; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Student Detailed Information</h3>
+        <table border="0" cellpadding="5" style="text-align: left; color: black;">
+            <tr>
+                <td><b>Student ID:</b></td>
+                <td><span id="det_id"></span></td>
+            </tr>
+            <tr>
+                <td><b>Full Name:</b></td>
+                <td><span id="det_name" style="font-weight: bold;"></span></td>
+            </tr>
+            <tr>
+                <td><b>Date of Birth:</b></td>
+                <td><span id="det_birthday"></span></td>
+            </tr>
+            <tr>
+                <td><b>Gender:</b></td>
+                <td><span id="det_gender"></span></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        parseXMLToObjects();
+        displayStudents(studentList);
+    </script>
+
+</body>
+</html>

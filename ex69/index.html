@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Exercise 69: XML - AJAX Employee Filter</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    <script src="JS/employee_filter.js"></script>
+</head>
+<body>
+
+    <h2 style="text-align: center; color: darkblue;">EMPLOYEE MANAGEMENT (AJAX)</h2>
+
+    <div align="center" style="margin-bottom: 20px;">
+        <label for="slTitle" style="font-weight: bold; font-size: 16px;">Select Title: </label>
+        <select id="slTitle" onchange="filterEmployeeByTitle()">
+            <option value="">Choose Title</option>
+        </select>
+    </div>
+
+    <table border="1" align="center" width="60%">
+        <thead>
+            <tr style="background-color: #cccccc;">
+                <th>Employee ID</th>
+                <th>Full Name</th>
+                <th>Phone Number</th>
+            </tr>
+        </thead>
+        <tbody id="employeebody">
+            <tr>
+                <td colspan="3" style="text-align: center; color: gray;">Please select a title above to display employees.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        window.onload = loadEmployeeData;
+    </script>
+</body>
+</html>

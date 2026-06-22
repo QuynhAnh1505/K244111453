@@ -1,0 +1,27 @@
+<employees>
+    <employee title="Manager">
+        <id>E001</id>
+        <name>John Smith</name>
+        <phone>0901234567</phone>
+    </employee>
+    <employee title="Developer">
+        <id>E002</id>
+        <name>Alice Johnson</name>
+        <phone>0912345678</phone>
+    </employee>
+    <employee title="Developer">
+        <id>E003</id>
+        <name>Bob Martin</name>
+        <phone>0934567890</phone>
+    </employee>
+    <employee title="Designer">
+        <id>E004</id>
+        <name>Sarah Connor</name>
+        <phone>0987654321</phone>
+    </employee>
+    <employee title="Manager">
+        <id>E005</id>
+        <name>Bruce Wayne</name>
+        <phone>0900000007</phone>
+    </employee>
+</employees>
